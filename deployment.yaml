@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: advertisement
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: advertisement
+  template:
+    metadata:
+      labels:
+        app: advertisement
+    spec:
+      containers:
+        - name: advertisement
+          image: pavankalyandasari511/advertise
+          ports:
+            - containerPort: 5000
