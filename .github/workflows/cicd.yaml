@@ -77,14 +77,8 @@ jobs:
           kubectl get pods
           echo -e "\n--- Service Status ---"
           kubectl get service
-      - name: 7. Start Background Services
+      - name: 7. Port Forward Service
         run: |
-          # Requirement: Minikube Tunnel
-          nohup minikube tunnel > tunnel.log 2>&1 &
-
-      - name: 8. Rerun the services
-        run: |
-          #rerunning the serivces
-          echo -e "\n--- Service---"
-          kubectl get service
-
+          kubectl port-forward svc/advertisement 8080:80 &
+          sleep 5
+          curl -v http://localhost:8080
